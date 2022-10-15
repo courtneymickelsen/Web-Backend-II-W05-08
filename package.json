@@ -1,0 +1,30 @@
+{
+  "name": "web-backend-ii-w05-08",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "foo": "echo test",
+    "watch": "nodemon app.js",
+    "swagger-autogen": "node ./swagger.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/courtneymickelsen/Web-Backend-II-W05-08.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/courtneymickelsen/Web-Backend-II-W05-08/issues"
+  },
+  "homepage": "https://github.com/courtneymickelsen/Web-Backend-II-W05-08#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.10.0",
+    "swagger-autogen": "^2.22.0",
+    "swagger-ui-express": "^4.5.0"
+  }
+}
