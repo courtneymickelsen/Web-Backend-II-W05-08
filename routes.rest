@@ -15,3 +15,20 @@ Content-Type: application/json
     "phoneNumber": "123-456-7890"
 }
 
+### get all customers
+GET https://web-backend-ii-w05-08.onrender.com/customers
+
+### get single customer by id
+GET https://web-backend-ii-w05-08.onrender.com/customers/634b080e938c8c7216997531
+
+### create new customer
+POST https://web-backend-ii-w05-08.onrender.com/customers HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Blake",
+    "lastName": "Mickelsen",
+    "email": "anotherfake@email.com",
+    "phoneNumber": "098-765-4321"
+}
+
