@@ -12,22 +12,21 @@ Content-Type: application/json
     "firstName": "Someone",
     "lastName": "New",
     "email": "idk@pretend.com",
-    "phoneNumber": "111-222-3333"
+    "phoneNumber": "lkj"
 }
 
 ### edit customer by id
-PUT http://localhost:8080/customers/634b080e938c8c7216997531
+PUT http://localhost:8080/customers/6354f1e942468f2e25bd935e
 Content-Type: application/json
 
 {
-    "firstName": "Courtney Anne",
     "lastName": "Mickelsen",
     "email": "fake@email.com",
     "phoneNumber": "123-456-7890"
 }
 
 ### delete customer by id
-DELETE http://localhost:8080/customers/634b080e938c8c7216997531
+DELETE http://localhost:8080/customers/6354e47df0640e42154274d2
 
 ### get all customers
 GET https://web-backend-ii-w05-08.onrender.com/customers

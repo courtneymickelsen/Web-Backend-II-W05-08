@@ -4,6 +4,7 @@ const mongodb = require('./db/connect');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+const cors = require('cors');
 
 const port = process.env.PORT || 8080;
 
@@ -17,6 +18,7 @@ app
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     next();
   })
+  .use(cors())
   .use('/', require('./routes'));
 
 process.on('uncaughtException', (err, origin) => {
