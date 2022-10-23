@@ -1,25 +1,37 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+const mongooseObjId = require('mongoose').Types.ObjectId;
 
 const getAllCustomers = async (req, res) =>{
-    const result = await mongodb.getDb().db('personalProject').collection('customers').find();
-    result.toArray().then((lists) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-    });
+    try {
+        const result = await mongodb.getDb().db('personalProject').collection('customers').find();
+        result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists);
+        });
+    } catch (error){
+        res.status(500).json(error);
+    };
 };
 
 const getSingleCustomer = async (req, res) => {
-    const userId = new ObjectId(req.body.id);
-    const result = await mongodb
-        .getDb()
-        .db('personalProject')
-        .collection('customers')
-        .find({ _id: userId });
-    result.toArray().then((lists) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists[0]);
-    });
+    try {
+        const userId = new ObjectId(req.body.id);
+        if (!(mongooseObjId.isValid(userId))) {
+            res.status(400).send('Invalid Id');
+        }
+        const result = await mongodb
+            .getDb()
+            .db('personalProject')
+            .collection('customers')
+            .find({ _id: userId });
+        result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists[0]);
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    };
 };
 
 const createCustomer = async (req, res) => {
@@ -39,7 +51,48 @@ const createCustomer = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json(error);
-    }
+    };
 };
 
-module.exports = { getAllCustomers, getSingleCustomer, createCustomer };
+const editCustomer = async (req, res) => {
+    try {
+        const userId = new ObjectId(req.body.id);
+        if (!(mongooseObjId.isValid(userId))) {
+            res.status(400).send('Invalid Id');
+        }
+        const customerObj = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phoneNumber: req.body.phoneNumber,
+        };
+        const response = await mongodb.getDb().db('personalProject').collection('customers').replaceOne({_id: userId}, customerObj);
+
+        if (response.acknowledged) {
+            res.status(204).json(response);
+        } else {
+            res.status(500).json(response.error || 'Something went wrong. Please try again.');
+        }
+    } catch(error) {
+    res.status(500).json(error);
+    };
+}
+
+const deleteCustomer = async (req, res) => {
+    try {
+        const userId = new ObjectId(req.params.id);
+        if (!(mongooseObjId.isValid(userId))) {
+            res.status(400).send('Invalid Id');
+        }
+        const response = await mongodb.getDb().db('personalProject').collection('customers').deleteOne({_id: userId});
+        if (response.deletedCount > 0){
+            res.status(200).send();
+        } else {
+            res.status(500).send(response.error);
+        }
+    } catch(error) {
+        res.status(500).json(error);
+    };
+}
+
+module.exports = { getAllCustomers, getSingleCustomer, createCustomer, editCustomer, deleteCustomer };
