@@ -5,9 +5,9 @@ const mongooseObjId = require('mongoose').Types.ObjectId;
 const getAllCustomers = async (req, res) =>{
     try {
         const result = await mongodb.getDb().db('personalProject').collection('customers').find();
-        result.toArray().then((lists) => {
+        result.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(lists);
+            res.status(200).json(list);
         });
     } catch (error){
         res.status(500).json(error);
@@ -18,16 +18,17 @@ const getSingleCustomer = async (req, res) => {
     try {
         const userId = new ObjectId(req.body.id);
         if (!(mongooseObjId.isValid(userId))) {
-            res.status(400).send('Invalid Id');
+            res.status(400).send({'Invalid Id' : userId});
+            return;
         }
         const result = await mongodb
             .getDb()
             .db('personalProject')
             .collection('customers')
             .find({ _id: userId });
-        result.toArray().then((lists) => {
+        result.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(lists[0]);
+            res.status(200).json(list[0]);
         });
     } catch (error) {
         res.status(500).json(error);
@@ -58,7 +59,8 @@ const editCustomer = async (req, res) => {
     try {
         const userId = new ObjectId(req.body.id);
         if (!(mongooseObjId.isValid(userId))) {
-            res.status(400).send('Invalid Id');
+            res.status(400).send({'Invalid Id' : userId});
+            return;
         }
         const customerObj = {
             firstName: req.body.firstName,
@@ -82,7 +84,8 @@ const deleteCustomer = async (req, res) => {
     try {
         const userId = new ObjectId(req.params.id);
         if (!(mongooseObjId.isValid(userId))) {
-            res.status(400).send('Invalid Id');
+            res.status(400).send({'Invalid Id' : userId});
+            return;
         }
         const response = await mongodb.getDb().db('personalProject').collection('customers').deleteOne({_id: userId});
         if (response.deletedCount > 0){

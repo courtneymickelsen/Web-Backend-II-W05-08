@@ -2,25 +2,25 @@
 GET http://localhost:8080/customers
 
 ### get single customer by id
-GET http://localhost:8080/customers/me
+GET http://localhost:8080/customers/634b080e938c8c7216997531
 
 ### create new customer
 POST http://localhost:8080/customers HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "Courtney",
-    "lastName": "Mickelsen",
-    "email": "fake@email.com",
-    "phoneNumber": "123-456-7890"
+    "firstName": "Someone",
+    "lastName": "New",
+    "email": "idk@pretend.com",
+    "phoneNumber": "111-222-3333"
 }
 
 ### edit customer by id
-PUT http://localhost:8080/customers/neh
+PUT http://localhost:8080/customers/634b080e938c8c7216997531
 Content-Type: application/json
 
 {
-    "firstName": "Courtney",
+    "firstName": "Courtney Anne",
     "lastName": "Mickelsen",
     "email": "fake@email.com",
     "phoneNumber": "123-456-7890"
@@ -46,3 +46,16 @@ Content-Type: application/json
     "phoneNumber": "098-765-4321"
 }
 
+### edit customer by id
+PUT http://web-backend-ii-w05-08.onrender.com/customers/634b080e938c8c7216997531
+Content-Type: application/json
+
+{
+    "firstName": "Courtney Anne",
+    "lastName": "Mickelsen",
+    "email": "fake@email.com",
+    "phoneNumber": "123-456-7890"
+}
+
+### delete customer by id
+DELETE http://web-backend-ii-w05-08.onrender.com/634b080e938c8c7216997531
