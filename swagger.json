@@ -5,7 +5,7 @@
     "description": "Courtney's API for Web Backend II Weeks 5-8",
     "version": "1.0.0"
   },
-  "host": "web-backend-ii-w05-08.onrender.com",
+  "host": "",
   "basePath": "/",
   "schemes": [
     "http",
@@ -67,9 +67,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"
