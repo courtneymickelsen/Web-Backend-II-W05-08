@@ -2,7 +2,7 @@
 GET http://localhost:8080/customers
 
 ### get single customer by id
-GET http://localhost:8080/customers/634b080e938c8c7216997531
+GET http://localhost:8080/customers/bh
 
 ### create new customer
 POST http://localhost:8080/customers HTTP/1.1
@@ -16,10 +16,11 @@ Content-Type: application/json
 }
 
 ### edit customer by id
-PUT http://localhost:8080/customers/6354f1e942468f2e25bd935e
+PUT http://localhost:8080/customers/6354f33c577efc39c651286b
 Content-Type: application/json
 
 {
+    "firstName": "",
     "lastName": "Mickelsen",
     "email": "fake@email.com",
     "phoneNumber": "123-456-7890"
