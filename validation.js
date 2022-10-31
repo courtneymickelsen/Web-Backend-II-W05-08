@@ -9,6 +9,11 @@ const customerValidation = [
   check("phoneNumber", "Please include a valid phone number.").isMobilePhone(),
 ];
 
+const orderValidation = [
+  check("count", "Count must be a valid whole number to continue.").isInt(),
+  check("count", "You must buy at least 1 item to place an order.").custom((value, {}) => value > 0)
+];
+
 // This function will be used as a piece of middleware that
 // checks if "express-validator" found any errors with
 // the request.
@@ -35,4 +40,4 @@ const handleValidationErrors = (req, res, next) => {
   res.status(400).json(errors);
 };
 
-module.exports = { customerValidation, handleValidationErrors };
+module.exports = { customerValidation, orderValidation, handleValidationErrors };
