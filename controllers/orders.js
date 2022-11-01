@@ -21,11 +21,7 @@ const getSingleOrder = async (req, res) => {
             res.status(400).send({'Invalid Id' : orderId});
             return;
         }
-        const result = await mongodb
-            .getDb()
-            .db('personalProject')
-            .collection('orders')
-            .find({ _id: orderId });
+        const result = await mongodb.getDb().db('personalProject').collection('orders').find({ _id: orderId });
         result.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(list[0]);
@@ -43,7 +39,7 @@ const createOrder = async (req, res) => {
             count: req.body.count,
             deliveryDate: req.body.deliveryDate,
         };
-        const response = await mongodb.getDb().db('personalProject').collection('Orders').insertOne(OrderObj);
+        const response = await mongodb.getDb().db('personalProject').collection('Orders').insertOne(orderObj);
 
         if (response.acknowledged) {
             res.status(201).json(response);
@@ -62,13 +58,13 @@ const editOrder = async (req, res) => {
             res.status(400).send({'Invalid Id' : orderId});
             return;
         }
-        const OrderObj = {
+        const orderObj = {
             customerId: req.body.customerId,
             flavor: req.body.flavor,
             count: req.body.count,
             deliveryDate: req.body.deliveryDate,
         };
-        const response = await mongodb.getDb().db('personalProject').collection('orders').replaceOne({_id: orderId}, OrderObj);
+        const response = await mongodb.getDb().db('personalProject').collection('orders').replaceOne({_id: orderId}, orderObj);
 
         if (response.acknowledged) {
             res.status(204).json(response);
