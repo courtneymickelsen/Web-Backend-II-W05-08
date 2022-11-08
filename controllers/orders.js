@@ -4,8 +4,8 @@ const mongooseObjId = require('mongoose').Types.ObjectId;
 
 const getAllOrders = async (req, res) =>{
     try {
-        const result = await mongodb.getDb().db('personalProject').collection('orders').find();
-        result.toArray().then((list) => {
+        const response = await mongodb.getDb().db('personalProject').collection('orders').find();
+        response.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(list);
         });
@@ -21,10 +21,10 @@ const getSingleOrder = async (req, res) => {
             res.status(400).send({'Invalid Id' : orderId});
             return;
         }
-        const result = await mongodb.getDb().db('personalProject').collection('orders').find({ _id: orderId });
-        result.toArray().then((list) => {
+        const response = await mongodb.getDb().db('personalProject').collection('orders').find({ _id: orderId });
+        response.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(list[0]);
+            res.status(200).json(list);
         });
     } catch (error) {
         res.status(500).json(error);
@@ -32,23 +32,18 @@ const getSingleOrder = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-    try {
-        const orderObj = {
-            customerId: req.body.customerId,
-            flavor: req.body.flavor,
-            count: req.body.count,
-            deliveryDate: req.body.deliveryDate,
-        };
-        const response = await mongodb.getDb().db('personalProject').collection('Orders').insertOne(orderObj);
-
-        if (response.acknowledged) {
-            res.status(201).json(response);
-        } else {
-            res.status(500).json(response.error || 'Something went wrong. Please try again.');
-        }
-    } catch (error) {
-        res.status(500).json(error);
+    const orderObj = {
+        customerId: req.body.customerId,
+        flavor: req.body.flavor,
+        count: req.body.count,
+        deliveryDate: req.body.deliveryDate,
     };
+    const response = await mongodb.getDb().db('personalProject').collection('orders').insertOne(orderObj);
+    if (response.acknowledged) {
+        res.status(201).json(response);
+    } else {
+        res.status(500).json(response.error || 'Something went wrong. Please try again.');
+    }
 };
 
 const editOrder = async (req, res) => {
@@ -68,11 +63,12 @@ const editOrder = async (req, res) => {
 
         if (response.acknowledged) {
             res.status(204).json(response);
-        } else {
+        }
+         else {
             res.status(500).json(response.error || 'Something went wrong. Please try again.');
         }
     } catch(error) {
-    res.status(500).json(error);
+        res.status(500).json(error);
     };
 }
 

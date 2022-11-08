@@ -33,11 +33,11 @@ const handleValidationErrors = (req, res, next) => {
   // our controller functions
   if (errors.isEmpty()) {
     next();
+  } else {
+    // Uh-oh, there were errors. Let's send them back
+    // to the user and set the response to a 400 (bad request)
+    res.status(400).json(errors);
   }
-
-  // Uh-oh, there were errors. Let's send them back
-  // to the user and set the response to a 400 (bad request)
-  res.status(400).json(errors);
 };
 
 module.exports = { customerValidation, orderValidation, handleValidationErrors };

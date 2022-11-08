@@ -2,7 +2,7 @@
 GET http://localhost:8080/customers
 
 ### get single customer by id
-GET http://localhost:8080/customers/bh
+GET http://localhost:8080/customers/6354f33c577efc39c651286b
 
 ### create new customer
 POST http://localhost:8080/customers HTTP/1.1
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ### delete customer by id
-DELETE http://localhost:8080/customers/6354e47df0640e42154274d2
+DELETE http://localhost:8080/customers/6360b0201e082fbc45942387
 
 ### ORDERS
 
@@ -35,7 +35,7 @@ DELETE http://localhost:8080/customers/6354e47df0640e42154274d2
 GET http://localhost:8080/orders
 
 ### get single order by id
-GET http://localhost:8080/orders/6360adf5457a04aaa63770aa
+GET http://localhost:8080/orders/6369cce97952d67802f28117
 
 ### create new order
 POST http://localhost:8080/orders HTTP/1.1
@@ -43,24 +43,24 @@ Content-Type: application/json
 
 {
     "customerId": "634b080e938c8c7216997531",
-    "flavor": "Chocolate",
-    "count": 4,
-    "deliveryDate": "December 7"
+    "flavor": "Huckleberry",
+    "count": 8,
+    "deliveryDate": "October 27"
 }
 
 ### edit order by id
-PUT http://localhost:8080/orders/6360adf5457a04aaa63770aa
+PUT http://localhost:8080/orders/6369d0d62bc4b93b63ec0d46
 Content-Type: application/json
 
 {
     "customerId": "634b080e938c8c7216997531",
-    "flavor": "Chocolate",
-    "count": 4,
-    "deliveryDate": "December 7"
+    "flavor": "Strawberry",
+    "count": 8,
+    "deliveryDate": "October 17"
 }
 
 ### delete order by id
-DELETE http://localhost:8080/orders/6360adf5457a04aaa63770aa
+DELETE http://localhost:8080/orders/6369cdcb31d162acd6019512
 
 
 ### RENDER SITE

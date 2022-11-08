@@ -4,8 +4,8 @@ const mongooseObjId = require('mongoose').Types.ObjectId;
 
 const getAllCustomers = async (req, res) =>{
     try {
-        const result = await mongodb.getDb().db('personalProject').collection('customers').find();
-        result.toArray().then((list) => {
+        const response = await mongodb.getDb().db('personalProject').collection('customers').find();
+        response.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(list);
         });
@@ -21,12 +21,12 @@ const getSingleCustomer = async (req, res) => {
             res.status(400).send({'Invalid Id' : userId});
             return;
         }
-        const result = await mongodb
+        const response = await mongodb
             .getDb()
             .db('personalProject')
             .collection('customers')
             .find({ _id: userId });
-        result.toArray().then((list) => {
+        response.toArray().then((list) => {
             res.setHeader('Content-Type', 'application/json');
             res.status(200).json(list[0]);
         });

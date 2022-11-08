@@ -4,7 +4,11 @@ const mongodb = require('./db/connect');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+const passport = require('passport');
+const session = require('express-session');
 const cors = require('cors');
+
+require('./controllers/auth')(passport);
 
 const port = process.env.PORT || 8080;
 
@@ -18,6 +22,13 @@ app
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     next();
   })
+  .use(session({
+    secret: 'happy dance',
+    resave: false,
+    saveUninitialized: false
+  }))
+  .use(passport.initialize())
+  .use(passport.session())
   .use(cors())
   .use('/', require('./routes'));
 

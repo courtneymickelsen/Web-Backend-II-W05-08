@@ -1,6 +1,7 @@
 const routes = require('express').Router();
 const { getAllOrders, getSingleOrder, createOrder, editOrder, deleteOrder } = require('../controllers/orders');
-const { customerValidation, orderValidation, handleValidationErrors } = require("../validation");
+const { customerValidation, orderValidation, handleValidationErrors } = require("../middleware/validation");
+const { ensureAuth, ensureGuest } = require('../middleware/auth');
 
 routes.get('/', getAllOrders);
 routes.get('/:id', getSingleOrder);
