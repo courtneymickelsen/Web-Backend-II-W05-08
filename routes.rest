@@ -2,7 +2,7 @@
 GET http://localhost:8080/customers
 
 ### get single customer by id
-GET http://localhost:8080/customers/6354f33c577efc39c651286b
+GET http://localhost:8080/customers/634b080e938c8c7216997531
 
 ### create new customer
 POST http://localhost:8080/customers HTTP/1.1
@@ -43,9 +43,12 @@ Content-Type: application/json
 
 {
     "customerId": "634b080e938c8c7216997531",
+    "dessertType": "Macaron",
     "flavor": "Huckleberry",
     "count": 8,
-    "deliveryDate": "October 27"
+    "message": "Happy birthday, Mom!",
+    "deliveryDate": "October 27",
+    "deliveryAddress": "1234 E HappyPlace Dr."
 }
 
 ### edit order by id
@@ -54,9 +57,12 @@ Content-Type: application/json
 
 {
     "customerId": "634b080e938c8c7216997531",
-    "flavor": "Strawberry",
+    "dessertType": "Macaron",
+    "flavor": "Huckleberry",
     "count": 8,
-    "deliveryDate": "October 17"
+    "message": "Happy birthday, Mom!",
+    "deliveryDate": "October 27",
+    "deliveryAddress": "1234 E HappyPlace Dr."
 }
 
 ### delete order by id

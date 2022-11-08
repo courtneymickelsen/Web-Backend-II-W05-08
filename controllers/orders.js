@@ -34,9 +34,12 @@ const getSingleOrder = async (req, res) => {
 const createOrder = async (req, res) => {
     const orderObj = {
         customerId: req.body.customerId,
+        dessertType: req.body.dessertType,
         flavor: req.body.flavor,
         count: req.body.count,
+        message: req.body.message,
         deliveryDate: req.body.deliveryDate,
+        deliveryAddress: req.body.deliveryAddress,
     };
     const response = await mongodb.getDb().db('personalProject').collection('orders').insertOne(orderObj);
     if (response.acknowledged) {
