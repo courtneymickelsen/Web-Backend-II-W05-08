@@ -14,28 +14,12 @@ const orderValidation = [
   check("count", "You must buy at least 1 item to place an order.").custom((value, {}) => value > 0)
 ];
 
-// This function will be used as a piece of middleware that
-// checks if "express-validator" found any errors with
-// the request.
-// "express-validator" checks for errors using the rules defined
-// above and _stores them on the request object_
-//
-// This function below will check if those errors exist and print
-// them out if so.
-//
-// See https://express-validator.github.io/docs/
 const handleValidationErrors = (req, res, next) => {
-  // Check if express validator found any errors
   const errors = validationResult(req);
 
-  // Hooray! No errors. Call "next()" to continue
-  // executing any remaining middleware and eventually
-  // our controller functions
   if (errors.isEmpty()) {
     next();
   } else {
-    // Uh-oh, there were errors. Let's send them back
-    // to the user and set the response to a 400 (bad request)
     res.status(400).json(errors);
   }
 };

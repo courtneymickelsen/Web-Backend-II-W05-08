@@ -10,6 +10,7 @@ const getAllCustomers = async (req, res) =>{
             res.status(200).json(list);
         });
     } catch (error){
+        console.log("this is where it's coming from");
         res.status(500).json(error);
     };
 };
