@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Courtney's Personal API",
-    "description": "Courtney's API for Web Backend II Weeks 5-8",
+    "title": "Courtney's API",
+    "description": "Courtney's API for Backend II",
     "version": "1.0.0"
   },
-  "host": "",
+  "host": "web-backend-ii-w05-08.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -23,7 +23,14 @@
         }
       }
     },
-    "/customers/": {
+    "/customers": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/orders/": {
       "get": {
         "description": "",
         "produces": [
@@ -48,16 +55,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "customerId": {
                   "example": "any"
                 },
-                "lastName": {
+                "dessertType": {
                   "example": "any"
                 },
-                "email": {
+                "flavor": {
                   "example": "any"
                 },
-                "phoneNumber": {
+                "count": {
+                  "example": "any"
+                },
+                "message": {
+                  "example": "any"
+                },
+                "deliveryDate": {
+                  "example": "any"
+                },
+                "deliveryAddress": {
                   "example": "any"
                 }
               }
@@ -68,13 +84,16 @@
           "201": {
             "description": "Created"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/customers/{id}": {
+    "/orders/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -118,16 +137,16 @@
                 "id": {
                   "example": "any"
                 },
-                "firstName": {
+                "customerId": {
                   "example": "any"
                 },
-                "lastName": {
+                "flavor": {
                   "example": "any"
                 },
-                "email": {
+                "count": {
                   "example": "any"
                 },
-                "phoneNumber": {
+                "deliveryDate": {
                   "example": "any"
                 }
               }
@@ -167,6 +186,38 @@
             "description": "Internal Server Error"
           }
         }
+      }
+    },
+    "/auth/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/google/callback": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     }
   }
